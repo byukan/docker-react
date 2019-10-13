@@ -1,0 +1,11 @@
+language: generic # resolves "rakefile not found" and the travis build failing
+sudo: required
+services:
+  - docker
+
+before_install:
+  # tag the image so you don't have to juggle the image id
+  - docker build -t byukan/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true byukan/docker-react npm run test
