@@ -11,5 +11,6 @@ RUN npm run build
 
 # previous block complete, start new block
 FROM nginx
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
 # default command of nginx starts the server
