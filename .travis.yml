@@ -1,3 +1,4 @@
+# .travais.yml
 language: generic # resolves "rakefile not found" and the travis build failing
 sudo: required
 services:
@@ -9,3 +10,19 @@ before_install:
 
 script:
   - docker run -e CI=true byukan/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: "docker-react"
+  env: "DockerReact-env"
+  # TRAVIS CI zips the contents of github and places in S3
+  bucket_name: "elasticbeanstalk-us-east-2-033116074849"
+  # default is the app name
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
