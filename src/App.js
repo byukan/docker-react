@@ -12,6 +12,7 @@ function App() {
           <br></br>
           Do you think you're better off alone?
           Edit <code>src/App.js</code> and save to reload.
+          I was changed on the feature branch.
         </p>
         <a
           className="App-link"
